@@ -26,8 +26,8 @@ public class Particle {
     private static final Random RANDOM = new Random();
 
     public Particle() {
-        this.x = RANDOM.nextInt(Box.WIDTH);
-        this.y = RANDOM.nextInt(Box.HEIGHT);
+        this.x = RANDOM.nextInt(Box.WIDTH + 1); // Range [0, Box.WIDTH]
+        this.y = RANDOM.nextInt(Box.HEIGHT + 1); // Range [0, Box.HEIGHT]
     }
 
     public int getX() {
@@ -72,7 +72,7 @@ public class Particle {
             default:
                 break;
         }
-        if (dx < 0 || dy < 0) { // If Out of bound error !
+        if (dx < 0 || dy < 0 || dx > Box.WIDTH || dy > Box.HEIGHT) { // If Out of bound error !
             this.move(); // Particle recursively move again until success;
         }
         this.x = dx;
