@@ -11,8 +11,8 @@ package finalExam;
  */
 public abstract class Account {
 
-    String accountID, customerID, accountType;
-    double balance;
+    protected String accountID, customerID, accountType;
+    protected double balance;
 
     public Account(String _accountID, String _customerID, String _accountType, double _balance) {
         accountID = _accountID;

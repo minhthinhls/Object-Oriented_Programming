@@ -17,12 +17,19 @@ import java.util.stream.Collectors;
  */
 public class Bank {
 
-    public static final String NAME = "INTERNATIONAL UNIVERSITY BANK";
-    public static final String ADDRESS = "Thu Duc, Linh Trung Ward";
-    public static List<Account> listOfAccount = new ArrayList<>();
-    public static Set<String> setID = new HashSet<>();
+    private final String name;
+    private final String address;
+    private List<Account> listOfAccount;
+    private Set<String> setID;
 
-    static void displayAccByCustomerID(String customerID) {
+    public Bank(String _name, String _address) {
+        name = _name;
+        address = _address;
+        listOfAccount = new ArrayList<>();
+        setID = new HashSet<>();
+    }
+
+    public void displayAccByCustomerID(String customerID) {
         System.out.println(String.format("Customer ID: %s", customerID));
         List<Account> accounts = listOfAccount.stream()
                 .filter(a -> customerID.equals(a.customerID))
@@ -36,7 +43,7 @@ public class Bank {
         }
     }
 
-    static void displayAccByCustomerID(String customerID, String accountType) {
+    public void displayAccByCustomerID(String customerID, String accountType) {
         System.out.println(String.format(
                 "Customer ID: %s\tAccount Type: %s", customerID, accountType
         ));
@@ -53,18 +60,24 @@ public class Bank {
         }
     }
 
-    static void addAccount(Account a) {
+    public void addAccount(Account a) {
         if (!setID.contains(a.accountID)) {
             setID.add(a.accountID);
             listOfAccount.add(a);
             System.out.println(String.format(
-                    "ACCOUNT {ID:%s} ADDED SUCCESSFULLY !", a.accountID
+                    "<<cusID: %s>> <<accType: %s>> <<accID: %s>> was added successfully !",
+                    a.customerID, a.accountType, a.accountID
             ));
         } else {
             System.out.println(String.format(
-                    "ACCOUNT {ID:%s} EXISTED -> CANNOT ADD ACCOUNT !", a.accountID
+                    "Couldn't add account <<ID: %s>> !", a.accountID
             ));
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("NAME: %s\tADDRESS: %s", name, address);
     }
 
 }

@@ -11,7 +11,7 @@ package finalExam;
  */
 public class SavingsAccount extends Account implements Comparable<SavingsAccount> {
 
-    double interestRate;
+    private double interestRate;
 
     public SavingsAccount(String _accountID, String _customerID, String _accountType,
             double _balance, double _interestRate) {
@@ -21,7 +21,7 @@ public class SavingsAccount extends Account implements Comparable<SavingsAccount
 
     @Override
     public boolean withdraw(double amount) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Cannot withdraw from SavingsAccount !");
     }
 
     @Override
@@ -38,6 +38,14 @@ public class SavingsAccount extends Account implements Comparable<SavingsAccount
             return 1;
         }
         return 0;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
     }
 
 }

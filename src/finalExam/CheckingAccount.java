@@ -11,7 +11,7 @@ package finalExam;
  */
 public class CheckingAccount extends Account implements Comparable<CheckingAccount> {
 
-    double overdraftAmount;
+    private double overdraftAmount;
 
     public CheckingAccount(String _accountID, String _customerID, String _accountType,
             double _balance, double _overdraftAmount) {
@@ -21,7 +21,20 @@ public class CheckingAccount extends Account implements Comparable<CheckingAccou
 
     @Override
     public boolean withdraw(double amount) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (balance < amount) {
+            if (amount - balance > overdraftAmount) {
+                throw new IllegalStateException("Transaction Fails !");
+            } else {
+                balance = 0;
+                overdraftAmount -= (amount - balance);
+                System.out.println("Transaction Succeeds !");
+                return true;
+            }
+        } else {
+            balance -= amount;
+            System.out.println("Transaction Succeeds !");
+            return true;
+        }
     }
 
     @Override
@@ -38,6 +51,14 @@ public class CheckingAccount extends Account implements Comparable<CheckingAccou
             return 1;
         }
         return 0;
+    }
+
+    public double getOverdraftAmount() {
+        return overdraftAmount;
+    }
+
+    public void setOverdraftAmount(double overdraftAmount) {
+        this.overdraftAmount = overdraftAmount;
     }
 
 }
