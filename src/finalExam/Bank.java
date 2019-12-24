@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -18,38 +19,44 @@ public class Bank {
 
     public static final String NAME = "INTERNATIONAL UNIVERSITY BANK";
     public static final String ADDRESS = "Thu Duc, Linh Trung Ward";
-    public static List<Account> accounts = new ArrayList<>();
+    public static List<Account> listOfAccount = new ArrayList<>();
     public static Set<String> setID = new HashSet<>();
 
     static void displayAccByCustomerID(String customerID) {
-        Account acc = accounts.stream()
-                .filter(a -> customerID.equals(a.accountID))
-                .findAny()
-                .orElse(null);
-        if (acc != null) {
-            System.out.println(acc);
+        System.out.println(String.format("Customer ID: %s", customerID));
+        List<Account> accounts = listOfAccount.stream()
+                .filter(a -> customerID.equals(a.customerID))
+                .collect(Collectors.toList());
+        if (!accounts.isEmpty()) {
+            for (Account a : accounts) {
+                System.out.println(a);
+            }
         } else {
-            System.out.println("CANNOT FIND ACCOUNT !");
+            System.out.println("CANNOT FIND ACCOUNTS !");
         }
     }
 
     static void displayAccByCustomerID(String customerID, String accountType) {
-        Account acc = accounts.stream()
-                .filter(a -> customerID.equals(a.accountID)
+        System.out.println(String.format(
+                "Customer ID: %s\tAccount Type: %s", customerID, accountType
+        ));
+        List<Account> accounts = listOfAccount.stream()
+                .filter(a -> customerID.equals(a.customerID)
                         && accountType.equals(a.accountType))
-                .findAny()
-                .orElse(null);
-        if (acc != null) {
-            System.out.println(acc);
+                .collect(Collectors.toList());
+        if (!accounts.isEmpty()) {
+            for (Account a : accounts) {
+                System.out.println(a);
+            }
         } else {
-            System.out.println("CANNOT FIND ACCOUNT !");
+            System.out.println("CANNOT FIND ACCOUNTS !");
         }
     }
 
     static void addAccount(Account a) {
         if (!setID.contains(a.accountID)) {
             setID.add(a.accountID);
-            accounts.add(a);
+            listOfAccount.add(a);
             System.out.println(String.format(
                     "ACCOUNT {ID:%s} ADDED SUCCESSFULLY !", a.accountID
             ));

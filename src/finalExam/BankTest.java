@@ -13,21 +13,21 @@ public class BankTest {
 
     public static void main(String args[]) {
         System.out.println("-----ADDING ACCOUNT TEST-----\n");
-        Bank.addAccount(new CheckingAccount("1", "CheckingAccount", "TEST", 2000, 100));
-        Bank.addAccount(new CheckingAccount("2", "CheckingAccount", "TEST", 3000, 300));
-        Bank.addAccount(new CheckingAccount("3", "CheckingAccount", "TEST", 1500, 200));
-        Bank.addAccount(new CheckingAccount("3", "CheckingAccount", "TEST", 1500, 200));
+        Bank.addAccount(new CheckingAccount("1", "C1", "CheckingAccount", 2000, 100));
+        Bank.addAccount(new CheckingAccount("2", "C1", "CheckingAccount", 3000, 300));
+        Bank.addAccount(new CheckingAccount("3", "C2", "CheckingAccount", 1500, 200));
+        Bank.addAccount(new CheckingAccount("3", "C2", "CheckingAccount", 1500, 200));
 
-        Bank.addAccount(new SavingsAccount("4", "SavingsAccount", "TEST", 2000, 100));
-        Bank.addAccount(new SavingsAccount("5", "SavingsAccount", "TEST", 3000, 300));
-        Bank.addAccount(new SavingsAccount("6", "SavingsAccount", "TEST", 1500, 200));
-        Bank.addAccount(new SavingsAccount("6", "SavingsAccount", "TEST", 1500, 200));
+        Bank.addAccount(new SavingsAccount("4", "C1", "SavingsAccount", 2000, 100));
+        Bank.addAccount(new SavingsAccount("5", "C1", "SavingsAccount", 3000, 300));
+        Bank.addAccount(new SavingsAccount("6", "C2", "SavingsAccount", 1500, 200));
+        Bank.addAccount(new SavingsAccount("6", "C2", "SavingsAccount", 1500, 200));
 
         System.out.println("\n-----DISPLAYING ACCOUNT TEST-----\n");
-        Bank.displayAccByCustomerID("1");
-        Bank.displayAccByCustomerID("7");
-        Bank.displayAccByCustomerID("2", "CheckingAccount");
-        Bank.displayAccByCustomerID("2", "SavingsAccount");
+        Bank.displayAccByCustomerID("C1");
+        Bank.displayAccByCustomerID("C3");
+        Bank.displayAccByCustomerID("C1", "CheckingAccount");
+        Bank.displayAccByCustomerID("C2", "SavingsAccount");
 
     }
 

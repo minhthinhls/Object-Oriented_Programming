@@ -9,13 +9,13 @@ package finalExam;
  *
  * @author Student
  */
-public class SavingsAccount extends Account {
+public class SavingsAccount extends Account implements Comparable<SavingsAccount> {
 
     double interestRate;
 
-    public SavingsAccount(String _accountID, String _accountType,
-            String _customerID, double _balance, double _interestRate) {
-        super(_accountID, _accountType, _customerID, _balance);
+    public SavingsAccount(String _accountID, String _customerID, String _accountType,
+            double _balance, double _interestRate) {
+        super(_accountID, _customerID, _accountType, _balance);
         interestRate = _interestRate;
     }
 
@@ -31,17 +31,13 @@ public class SavingsAccount extends Account {
     }
 
     @Override
-    public int compareTo(Account a) {
-        if (a instanceof SavingsAccount) {
-            SavingsAccount sa = (SavingsAccount) a;
-            if (this.interestRate > sa.interestRate) {
-                return 1;
-            } else if (this.interestRate < sa.interestRate) {
-                return -1;
-            }
-            return 0;
+    public int compareTo(SavingsAccount sa) {
+        if (this.interestRate > sa.interestRate) {
+            return -1; // This object is ranked higher
+        } else if (this.interestRate < sa.interestRate) {
+            return 1;
         }
-        throw new ClassCastException("Cannot cast Account to SavingsAccount");
+        return 0;
     }
 
 }

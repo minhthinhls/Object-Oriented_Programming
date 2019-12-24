@@ -9,24 +9,24 @@ package finalExam;
  *
  * @author Student
  */
-public abstract class Account implements Comparable<Account> {
+public abstract class Account {
 
-    String accountID, accountType, customerID;
+    String accountID, customerID, accountType;
     double balance;
 
-    public Account(String _accountID, String _accountType, String _customerID, double _balance) {
+    public Account(String _accountID, String _customerID, String _accountType, double _balance) {
         accountID = _accountID;
-        accountType = _accountType;
         customerID = _customerID;
+        accountType = _accountType;
         balance = _balance;
     }
 
     public abstract boolean withdraw(double amount);
 
     @Override
-    public abstract String toString();
-
-    @Override
-    public abstract int compareTo(Account a);
+    public String toString() {
+        return String.format("accID:%s;%s;CurrentBalance:%f",
+                accountID, accountType, balance);
+    }
 
 }
