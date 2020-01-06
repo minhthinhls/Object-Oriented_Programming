@@ -52,7 +52,7 @@ public class MyMap<K extends Object, V extends Object> {
         mapGeneric.put(1, "1");
         mapGeneric.put(2, "2");
         try {
-            mapGeneric.put("3", "3"); // I've already catch the ERROR, just run !
+            mapGeneric.put(3, "3"); // I've already catch the ERROR, just run !
         } catch (RuntimeException e) {
             System.out.println("Map putting ERROR at key \"3\"");
         }
